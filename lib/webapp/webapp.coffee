@@ -1,26 +1,28 @@
-strings = require '../strings'
 express = require 'express'
 coffeekup = require 'coffeekup'
 browserify = require 'browserify'
 
-try
-  config = require '../../localconfig'
-catch error
-  console.log strings.err_localconfig_is_missing
-  return
 
-config = config.get_config()
+config = require '../config'
+strings = require '../strings'
+fbx = require '../fbx'
+rpc = require '../rpc'
+
 port = config.port or 80
 
 console.log ''
 console.log 'Load Mapocho Valley Web App with the following Configuration:'
 console.log JSON.stringify config
 
+## --- create and configure server
 
 server = express.createServer()
 
 server.register '.coffee', coffeekup
 server.set 'view engine', 'coffee'
+
+fbx.init server
+rpc._init server
 
 pub = __dirname + '/public'
 server.use express.compiler src: pub, enable: ['less']
@@ -35,59 +37,40 @@ server.use express.staticProvider pub
 # make scripts located in lib/client available to the client
 server.use browserify base : __dirname + '/../client', mount : '/client.js'
 
-
 server.get '/', (req, res) ->
   context = 
     strings : strings
     show_fb_login_button : yes
-    requires : ['mv_client_util', 'mv_client', 'mv_client_home', 'mv_common']
-    og_title : 'some title' # MV.title
-    og_description : 'some description' # MV.description
+    og_title : strings.title
+    og_description : strings.description
     og_image : '/assets/mapochovalley-home.png'
   res.render 'index', context: context
 
+server.get '/profile/:id', (req, res) ->
+  get_user req.params.id, (user) =>
+    context = 
+      strings : strings
+      title : user.name
+      user : user
+      show_fb_login_button : yes
+      og_title : "#{user.name}'s profile @ #{strings.title}"
+      og_description : "#{user.name}'s profile @ #{strings.title}"
+      # could use a more personalized image here. good for FB share
+      og_image : '/assets/mapochovalley-home.png'
+    res.render 'profile', context: context
+
+server.get '/register', (req, res) ->
+  if  (c = req.session?.fbx_cookie )?
+    res.writeHead 302, Location: '/profile/' + c.uid
+    res.end()
+  context = 
+    config : config
+    strings : strings
+    show_fb_login_button : no
+    og_title : 'Register @ ' + strings.title
+    og_description : strings.description
+    og_image : '/assets/mapochovalley-home.png'
+  res.render 'register', context: context
 
 server.listen port
 console.log 'Mapocho Valley App listening on port ' + port
-
-
-
-
-
-
-
-
-###
-
-get '/': ->
-  MV.set_on_this @
-  @show_fb_login_button = yes
-  @requires = ['mv_client_util', 'mv_client', 'mv_client_home', 'mv_common']
-  console.log 'before get members'
-  get_group_members (members) =>
-    console.log 'got members'
-    @members = members
-    @og_title = MV.title
-    @og_description = MV.description
-    @og_image = '/assets/mapochovalley-home.png'
-    render 'index'
-
-get '/register': ->
-  if  (c = request.session?.fb_cookie )?
-    response.writeHead 302, Location: '/badge/' + c.uid
-    response.end()
-  MV.set_on_this @
-  @requires = ['mv_client_util', 'mv_client', 'mv_common']
-  render 'register'
-
-get '/badge/:id' : ->
-  @show_fb_login_button = yes
-  MV.set_on_this @
-  @requires = ['mv_client_util', 'mv_client', 'mv_client_badge', 'mv_common']  
-  get_user @id, (user) =>
-    @title = user.name
-    @user = user
-    @og_title = "#{user.name}'s profile @ #{MV.title}"
-    render 'badge'
-
-###

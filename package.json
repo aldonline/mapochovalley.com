@@ -8,7 +8,7 @@
    ,"coffee-script": ">= 1.0.1"
    ,"express": ">= 1.0.7"
    ,"request": ">= 1.9.0"
-   ,"minirpc": ">= 0.0.2"
+   ,"minirpc": ">= 0.0.3"
    ,"mongoose": ">= 1.1.0"
    ,"browserify": ">= 0.2.2"
    ,"less": ">= 1.0.41"

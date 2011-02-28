@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+fbx = require './fbx'
 
 mongoose.connect 'mongodb://localhost/test'
 
@@ -21,6 +22,20 @@ Person = new Schema
 mongoose.model 'Person', Person
 
 Person = mongoose.model 'Person'
+
+fbapi = fbx.fbapi
+
+class User
+  constructor : (@id) ->
+    @mv_url = "http://dev.mapochovalley.com/#{@id}"
+    @pic_url = "http://graph.facebook.com/#{@id}/picture?type=large"
+  add_fb_object : (obj) -> ( this[k] = v ) for k, v of obj
+
+get_user = (id, cb) ->
+  fbapi "/#{id}", (res) ->
+    user = new User id
+    user.add_fb_object res
+    cb user
 
 exports.Person = Person
 
