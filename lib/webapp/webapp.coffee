@@ -22,7 +22,9 @@ server = express.createServer()
 server.register '.coffee', coffeekup
 server.set 'view engine', 'coffee'
 
-server.use express.staticProvider __dirname + '/public'
+pub = __dirname + '/public'
+server.use express.compiler src: pub, enable: ['less']
+server.use express.staticProvider pub
 # the following middleware is the defacto standard
 # but we are not using it (yet), so I comment out
 # server.use express.bodyDecoder()
