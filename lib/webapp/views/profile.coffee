@@ -39,4 +39,4 @@ div style: 'width: 980px; position:relative', ->
   div style:'margin-left:400px ; border: 1px solid #ccc', ->
     img src: @user.pic_url, style:'display:block'
     a href:@user.link, -> 'Facebook Profile'
-  text "<script> require('mv_client').render_twitter_widget( '#{@user.twitter}' ) </script>" if @user.twitter?
+  text "<script> require('./common').render_twitter_widget( '#{@user.twitter}' ) </script>" if @user.twitter?

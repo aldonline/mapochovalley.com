@@ -12,7 +12,6 @@ class ValueBuffer
       @value = @new_value_candidate
       $(@).trigger 'change'
 
-
 ###
 de = new DeferredExecutor
 de.add -> foo # not executed

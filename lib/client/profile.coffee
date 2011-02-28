@@ -1,4 +1,3 @@
-mv_client = require 'mv_client'
 
 ###
 status
@@ -8,7 +7,8 @@ status
   saving
 ###
 
-$ -> $('#edit-profile-button').click -> edit_badge()
+exports.init = ->
+  $ -> $('#edit-profile-button').click -> edit_badge()
 
 open_modal = (content) ->
   di = $('<div>')

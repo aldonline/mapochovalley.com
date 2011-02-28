@@ -1,6 +1,6 @@
 
 $ ->
-  console.log 'mv_client init()'
+  console.log 'common init()'
 
 render_twitter_widget = (profile) ->
   tw = new TWTR.Widget

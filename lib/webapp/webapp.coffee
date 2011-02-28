@@ -1,6 +1,7 @@
 strings = require '../strings'
 express = require 'express'
 coffeekup = require 'coffeekup'
+browserify = require 'browserify'
 
 try
   config = require '../../localconfig'
@@ -14,7 +15,6 @@ port = config.port or 80
 console.log ''
 console.log 'Load Mapocho Valley Web App with the following Configuration:'
 console.log JSON.stringify config
-
 
 
 server = express.createServer()
@@ -32,6 +32,9 @@ server.use express.staticProvider pub
 # TODO: Make the secret configurable.
 # server.use express.session secret: 'hackme'
 
+# make scripts located in lib/client available to the client
+server.use browserify base : __dirname + '/../client', mount : '/client.js'
+
 
 server.get '/', (req, res) ->
   context = 
@@ -42,7 +45,6 @@ server.get '/', (req, res) ->
     og_description : 'some description' # MV.description
     og_image : '/assets/mapochovalley-home.png'
   res.render 'index', context: context
-
 
 
 server.listen port

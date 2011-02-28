@@ -17,5 +17,5 @@ p ->
   '2. Customize your badge'
 p ->
   '3. Done ;)'
-text "<script> require('mv_client').render_twitter_widget() </script>"
+text "<script> require('./common').render_twitter_widget() </script>"
 # iframe width:225, height:570, src:'http://meetu.ps/yjFp', frameborder:0
