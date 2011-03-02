@@ -2,6 +2,7 @@ The MapochoValley.com Web App
 =============================================
 
 NOTES:
+
   * THE FOLLOWING INSTRUCTIONS DON'T WORK YET. BE PATIENT
   * THIS IS NOT THE CURRENT SITE AT MAPOCHOVALLEY.COM. THIS IS A NEWER VERSION
 
@@ -68,6 +69,7 @@ Voila!
 You will see the app, but there are no users.
 
 In order to get some users, do the following:
+
   * Add yourself as user
   * Add your mom/dad/girlfriend ;)
   * Create test users ( TODO: explain )
