@@ -23,8 +23,6 @@ mongoose.model 'Person', Person
 
 Person = mongoose.model 'Person'
 
-fbapi = fbx.fbapi
-
 class User
   constructor : (@id) ->
     @mv_url = "http://dev.mapochovalley.com/#{@id}"
@@ -32,12 +30,13 @@ class User
   add_fb_object : (obj) -> ( this[k] = v ) for k, v of obj
 
 get_user = (id, cb) ->
-  fbapi "/#{id}", (res) ->
+  fbx.api "/#{id}", (res) ->
     user = new User id
     user.add_fb_object res
     cb user
 
 exports.Person = Person
+exports.get_user = get_user # <-- deprecated
 
 ###
 

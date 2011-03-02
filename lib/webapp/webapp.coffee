@@ -2,11 +2,12 @@ express = require 'express'
 coffeekup = require 'coffeekup'
 browserify = require 'browserify'
 
-
+badge = require '../badge/core'
 config = require '../config'
 strings = require '../strings'
 fbx = require '../fbx'
 rpc = require '../rpc'
+model = require '../model'
 
 port = config.port or 80
 
@@ -22,6 +23,7 @@ server.register '.coffee', coffeekup
 server.set 'view engine', 'coffee'
 
 fbx.init server
+badge.init server
 rpc._init server
 
 pub = __dirname + '/public'
@@ -47,7 +49,7 @@ server.get '/', (req, res) ->
   res.render 'index', context: context
 
 server.get '/profile/:id', (req, res) ->
-  get_user req.params.id, (user) =>
+  model.get_user req.params.id, (user) =>
     context = 
       strings : strings
       title : user.name

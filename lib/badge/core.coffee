@@ -8,5 +8,6 @@ they will be accessible at the following URI
 
 exports.init = ( server ) ->
   server.get '/badge/:id.png', (req, res) ->
-    canvas = generator.generate_badge_canvas 'http://mapochovalley.com/badge/4343', 'Aldo Bucchi ' + req.params.id, '@aldonline', 'Foo!'
+    id = req.params.id
+    canvas = generator.generate_badge_canvas 'http://mapochovalley.com/profile/' + id, 'Name for ' + id, '@aldonline', 'Foo!'
     generator.respond_canvas_as_png canvas, res
