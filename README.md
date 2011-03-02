@@ -2,8 +2,8 @@ The MapochoValley.com Web App
 =============================================
 
 NOTES:
-  * THE FOLLOWING INSTRUCTIONS DON'T WORK YET. BE PATIENT
-  * THIS IS NOT THE CURRENT SITE AT MAPOCHOVALLEY.COM. THIS IS A NEWER VERSION
+*   THE FOLLOWING INSTRUCTIONS DON'T WORK YET. BE PATIENT
+*   THIS IS NOT THE CURRENT SITE AT MAPOCHOVALLEY.COM. THIS IS A NEWER VERSION
 
 Getting Started
 --------------------
@@ -68,9 +68,9 @@ Voila!
 You will see the app, but there are no users.
 
 In order to get some users, do the following:
- 1. Add yourself as user
- 2. Add your mom/dad/girlfriend
- 3. Create test users ( TODO: explain )
+*   Add yourself as user
+*   Add your mom/dad/girlfriend ;)
+*   Create test users ( TODO: explain )
 
 [Aldo] We should provide some test data. But that's not trivial as since everyone is using a different Facebook App, it won't work for everyone. The other option is to share a Facebook App amongst ourselves. But in the open? Hmm...
 
