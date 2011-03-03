@@ -5,8 +5,15 @@ NOTES:
 
   * THIS IS NOT THE CURRENT SITE AT MAPOCHOVALLEY.COM. THIS IS A NEWER VERSION
 
+
+Development Guidelines
+-----------------------------------
+
+  * Add bugs, ideas, feature requests, etc to the [Issues Section of This GitHub Project](https://github.com/aldonline/mapochovalley.com/issues)
+  * When "accepting" an issue, tag it with your username preceded by an underscore. For example, Aldo uses the tag: _aldonline
+
 Setting up the MV Web App for local development
------------------------------------------------
+------------------------------------------------------------------------
 
 ### Dependencies
 
@@ -32,7 +39,6 @@ Since the project is packaged as an NPM module, issuing the following command wi
     npm link .
 
 We are using NPM because it makes it easy to handle our apps dependencies, but we are not exporting anything. You won't find youself doing require('mapochovalley.com'). This is a valid use case for NPM.
-
 
 ### Some Manual Fixes
 
