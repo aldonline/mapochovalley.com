@@ -17,7 +17,7 @@ Setting up the MV Web App for local development
 
 ### Dependencies
 
-  * [Node](http://nodejs.org/) >= v0.4.1
+  * [Node](http://nodejs.org/) >= v0.4.1 (**So far, tested and working with v0.4.1. We had problems related to modules express and connect using v0.4.2**)
   * The latest [NPM](https://github.com/isaacs/npm)
   * [Mongo DB](http://www.mongodb.org/) >= 1.6.5
 
@@ -105,6 +105,22 @@ In order to get some users, do the following:
   * Add yourself as user
   * Add your mom/dad/girlfriend ;)
   * Create test users ( TODO: explain )
+  
+#### Troubleshooting
+
+If you installed as non-root user, and have problems like to "Module not found" exception, that's because the module search paths does not points to the correct module install dir. To know the paths that node is using execute
+
+    $ node
+    > require.paths
+    [ '/Users/:username/.node_modules', '/Users/:username/.node_libraries', '...' ]
+    
+if you have something like that, then a solution is to create a symlink target = $HOME/.node_modules to the correct path where modules are installed. How to know where the hell is that path?, execute
+
+    $ nmp config list
+    
+and take a look at the root property, in my laptop (mac OSX) is at "/usr/local/lib/node", so i did
+
+    $ ln -s /usr/local/lib/node $HOME/.node_modules
 
 [Aldo] We should provide some test data. But that's not trivial as since everyone is using a different Facebook App, it won't work for everyone. The other option is to share a Facebook App amongst ourselves. But in the open? Hmm...
 
