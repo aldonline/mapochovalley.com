@@ -3,8 +3,8 @@
 _metaprop = (p, c) -> (meta property:p, content:c) if c?
 _s = (src) -> script src: src
 _c = (href) -> link rel: 'stylesheet', href: href
-# start HTML doc
 
+# start HTML doc
 doctype 5
 html ->
   head ->
@@ -31,7 +31,7 @@ html ->
     if @show_fb_login_button
       text '<fb:login-button id="fb-login-button"
               autologoutlink="true"
-              registration-url="http/register" 
+              registration-url="http://'+@config.domain+'/register" 
               fb-only="true"></fb:login-button>'
     div id:'flw'
     div -> @body

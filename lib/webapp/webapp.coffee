@@ -42,7 +42,8 @@ server.use express.staticProvider pub
 server.use browserify base : __dirname + '/../client', mount : '/client.js'
 
 server.get '/', (req, res) ->
-  context = 
+  context =
+    config : config
     strings : strings
     show_fb_login_button : yes
     og_title : strings.title
@@ -52,7 +53,8 @@ server.get '/', (req, res) ->
 
 server.get '/profile/:id', (req, res) ->
   model.get_user req.params.id, (user) =>
-    context = 
+    context =
+      config : config
       strings : strings
       title : user.name
       user : user
@@ -60,15 +62,18 @@ server.get '/profile/:id', (req, res) ->
       og_title : "#{user.name}'s profile @ #{strings.title}"
       og_description : "#{user.name}'s profile @ #{strings.title}"
       # could use a more personalized image here. good for FB share
+      # this image can be built using HTML5 Canvas. See ./badge/generator module
       og_image : '/assets/mapochovalley-home.png'
     res.render 'profile', context: context
 
 server.get '/register', (req, res) ->
+  # if user is already logged in, redirect to profile
   if  (c = req.session?.fbx_cookie )?
     res.writeHead 302, Location: '/profile/' + c.uid
     res.end()
   context = 
     config : config
+    fbx : fbx
     strings : strings
     show_fb_login_button : no
     og_title : 'Register @ ' + strings.title
