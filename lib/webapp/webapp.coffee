@@ -1,11 +1,13 @@
 express = require 'express'
 coffeekup = require 'coffeekup'
 browserify = require 'browserify'
+facebook_express = require 'facebook-express'
 
+
+fbx = require '../fbx'
 badge = require '../badge/core'
 config = require '../config'
 strings = require '../strings'
-fbx = require '../fbx'
 rpc = require '../rpc'
 model = require '../model'
 

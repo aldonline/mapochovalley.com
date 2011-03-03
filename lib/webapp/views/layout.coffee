@@ -31,7 +31,7 @@ html ->
     if @show_fb_login_button
       text '<fb:login-button id="fb-login-button"
               autologoutlink="true"
-              registration-url="http://dev.mapochovalley.com/register" 
+              registration-url="http/register" 
               fb-only="true"></fb:login-button>'
     div id:'flw'
     div -> @body
