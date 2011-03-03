@@ -3,7 +3,6 @@ The MapochoValley.com Web App
 
 NOTES:
 
-  * THE FOLLOWING INSTRUCTIONS DON'T WORK YET. BE PATIENT
   * THIS IS NOT THE CURRENT SITE AT MAPOCHOVALLEY.COM. THIS IS A NEWER VERSION
 
 Setting up the MV Web App for local development
