@@ -48,6 +48,7 @@ Hopefully Maurice will fix this soon and we can default back to the normal workf
     mkdir -p /usr/src
     cd /usr/src
     git clone git@github.com:aldonline/coffeekup.git
+    cd coffeekup
     npm link .
 
 #### Express and Connect Incompatibility
