@@ -17,8 +17,9 @@ Setting up the MV Web App for local development
 
 ### Dependencies
 
-Make sure you have [Node](http://nodejs.org/) >= v0.4 and the latest [NPM](https://github.com/isaacs/npm).
-You can just copy paste the following scripts, but I highly encourage you to read through to get an idea of how this works.
+  * [Node](http://nodejs.org/) >= v0.4.1
+  * The latest [NPM](https://github.com/isaacs/npm)
+  * [Mongo DB](http://www.mongodb.org/) >= 1.6.5
 
 ### Get Source
 
