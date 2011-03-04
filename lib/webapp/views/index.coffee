@@ -1,11 +1,14 @@
+# helpers
+_user = (user) ->
+  a href: "http://mapochovalley.com/profile/#{user.uid}", title: user.name, ->
+    img src: "http://graph.facebook.com/#{user.uid}/picture"
+
+# HTML output
+
 a href:'/', ->
   img src:'/assets/mapochovalley-home.png', style:'width:720; height:280; border:0'
 hr()
-###
-for member in @members
-  a href:"/badge/#{member.id}", title:member.name, ->
-    img src:"http://graph.facebook.com/#{member.id}/picture"
-###
+_user user for user in @users
 hr()
 h1 'Welcome to Mapocho Valley'
 text @strings.description
