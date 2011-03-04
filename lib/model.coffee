@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
-fbx = require './fbx'
+facebook_express = require 'facebook-express'
+config = require './config'
 
 mongoose.connect 'mongodb://localhost/test'
 
@@ -20,8 +21,28 @@ Person = new Schema
   sup_date : Date
 
 mongoose.model 'Person', Person
-
 Person = mongoose.model 'Person'
+
+fbx = facebook_express.create_helper
+  app_id: config.app_id
+  app_secret: config.app_secret
+  domain: config.domain
+  registration:
+    fields: [
+      {name:'name'}
+      {name:'email'}
+    ]
+  on_registration: ( data, cb ) ->
+    
+    # see if person is already registered
+    
+    # add to database
+    
+    console.log 'Got registration data.'
+    console.log 'For now we are just logging this, but we should store it into mongo'
+    console.log data
+    cb 'http://mapochovalley.com/'
+
 
 class User
   constructor : (@id) ->
@@ -36,7 +57,9 @@ get_user = (id, cb) ->
     cb user
 
 exports.Person = Person
+exports.fbx = fbx
 exports.get_user = get_user # <-- deprecated
+
 
 ###
 

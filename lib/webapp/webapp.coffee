@@ -4,12 +4,13 @@ browserify = require 'browserify'
 facebook_express = require 'facebook-express'
 
 
-fbx = require '../fbx'
 badge = require '../badge/core'
 config = require '../config'
 strings = require '../strings'
 rpc = require '../rpc'
 model = require '../model'
+
+fbx = model.fbx
 
 port = config.port or 80
 
