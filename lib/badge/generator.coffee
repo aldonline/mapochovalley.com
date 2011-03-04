@@ -50,10 +50,11 @@ generate_badge_canvas = ( uri, name, twitter, tagline ) ->
   te = ctx.measureText name
   ctx.fillText name, (width - te.width) / 2, 150
   ## add twitter
-  ctx.fillStyle = '#444'
-  ctx.font = '80px Verdana'
-  te = ctx.measureText twitter
-  ctx.fillText twitter, (width - te.width) / 2, 300
+  if twitter?
+    ctx.fillStyle = '#444'
+    ctx.font = '80px Verdana'
+    te = ctx.measureText twitter
+    ctx.fillText twitter, (width - te.width) / 2, 300
   ## add QR code
   qr_canvas = create_qr_canvas uri
   qr_x = (width - qr_width) / 2
