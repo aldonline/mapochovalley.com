@@ -68,11 +68,7 @@ class User
     @pic_url = "http://graph.facebook.com/#{@id}/picture?type=large"
   add_fb_object : (obj) -> ( this[k] = v ) for k, v of obj
 
-get_user = (id, cb) ->
-  fbx.api "/#{id}", (res) ->
-    user = new User id
-    user.add_fb_object res
-    cb user
+get_user = (id, cb) -> Person.findOne {uid:id}, (err, res) -> cb res
 
 exports.Person = Person
 exports.fbx = fbx

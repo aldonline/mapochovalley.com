@@ -29,8 +29,8 @@ button id:'edit-profile-button', -> 'Edit'
 a href:'/', ->
   img src:'/assets/mapochovalley-home.png', style:'width:360px; height:140px; border:0'
 div style: 'width: 980px; position:relative', ->
-  img src: '/badge/' + @user.id + '.png', width: 200
+  img src: '/badge/' + @user.uid + '.png', width: 200
   div style:'margin-left:400px ; border: 1px solid #ccc', ->
-    img src: @user.pic_url, style:'display:block'
-    a href:@user.link, -> 'Facebook Profile'
+    img src: "http://graph.facebook.com/#{@user.uid}/picture?type=large", style:'display:block'
+    a href: "http://facebook.com/profile.php?id=#{@user.uid}", -> 'Facebook Profile'
   text "<script> require('./common').render_twitter_widget( '#{@user.twitter}' ) </script>" if @user.twitter?
