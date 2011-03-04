@@ -108,13 +108,13 @@ In order to get some users, do the following:
   
 #### Troubleshooting
 
-If you installed as non-root user, and have problems like to "Module not found" exception, that's because the module search paths does not points to the correct module install dir. To know the paths that node is using execute
+If you installed as non-root user and run into a "Module not found" exception, that's probably because the module search path(s) do not point to the correct module install dir. To see the paths that node is using execute:
 
     $ node
     > require.paths
     [ '/Users/:username/.node_modules', '/Users/:username/.node_libraries', '...' ]
     
-if you have something like that, then a solution is to create a symlink target = $HOME/.node_modules to the correct path where modules are installed. How to know where the hell is that path?, execute
+if you have something like that, one solution is to create a symlink target = $HOME/.node_modules to the correct path where modules are installed. How to know where the hell is that path?, execute
 
     $ nmp config list
     
