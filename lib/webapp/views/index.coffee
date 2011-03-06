@@ -1,9 +1,10 @@
 # helpers
 _user = (user) ->
-  a href: "http://mapochovalley.com/profile/#{user.uid}", title: user.name, ->
+  a href: "/profile/#{user.uid}", title: user.name, ->
     img src: "http://graph.facebook.com/#{user.uid}/picture"
 
 # HTML output
+coffeescript -> require('./index').init()
 
 a href:'/', ->
   img src:'/assets/mapochovalley-home.png', style:'width:720; height:280; border:0'

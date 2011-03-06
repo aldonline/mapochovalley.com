@@ -1,8 +1,14 @@
 
+# Helpers
+
 cbx = (_label, _id) ->
   p ->
     label _label + ':'
     input type:'checkbox', id:_id
+
+# HTML output
+
+coffeescript -> require('./profile').init()
 
 # form
 # we define the structure here, but it will be manipulated on the client side
@@ -15,15 +21,12 @@ form id:'edit-badge-form', style:'display:none', ->
   p ->
     label 'Tagline:', 'for':'i_tagline'
     input id:'i_tagline', type:'text' , class:'required'
-    br()
-    text 'A simple text saying this and that'
   p ->
     label 'Email:', 'for':'i_email'
     input id:'i_email', type:'text' , class:'required email'
   p ->
     label 'Twitter ID:', 'for':'i_twitter_id'
     input id:'i_twitter_id', type:'text'
-    text '@aldonline'
 
 button id:'edit-profile-button', -> 'Edit'
 a href:'/', ->

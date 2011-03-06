@@ -10,7 +10,7 @@
    ,"request": ">= 1.9.0"
    ,"minirpc": ">= 0.0.4"
    ,"mongoose": ">= 1.1.0"
-   ,"browserify": ">= 0.2.2"
+   ,"browserify": ">= 0.2.3"
    ,"less": ">= 1.0.41"
    ,"facebook-express": ">= 0.0.21"
    ,"coffeekup": ">=0.2.2"
