@@ -1,7 +1,4 @@
 
-$ ->
-  console.log 'common init()'
-
 render_twitter_widget = (profile) ->
   tw = new TWTR.Widget
     version: 2

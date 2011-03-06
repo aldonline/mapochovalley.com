@@ -8,7 +8,9 @@ status
 ###
 
 exports.init = ->
-  $ -> $('#edit-profile-button').click -> edit_badge()
+  $ -> 
+    $('#edit-profile-button').click ->
+      edit_badge()
 
 open_modal = (content) ->
   di = $('<div>')
@@ -32,13 +34,14 @@ edit_badge = (data) ->
   open_modal container
   container.text 'Loading...'
   ___minirpc.get_badge_data (err, res) ->
+    if err?
+      throw new Error 'rpc.get_badge_data error:' + err
     container.text ''
     form = get_form()
     container.append form
     form.css display:'block'
     form.validate()
     inject res
-    # load data into form
 
 _form = null
 get_form = -> _form ?= $ '#edit-badge-form'

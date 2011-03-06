@@ -1,15 +1,15 @@
 express = require 'express'
 coffeekup = require 'coffeekup'
 browserify = require 'browserify'
-facebook_express = require 'facebook-express'
 
 
-fbx = require '../fbx'
 badge = require '../badge/core'
 config = require '../config'
 strings = require '../strings'
 rpc = require '../rpc'
 model = require '../model'
+
+fbx = model.fbx
 
 port = config.port or 80
 
@@ -42,14 +42,16 @@ server.use express.staticProvider pub
 server.use browserify base : __dirname + '/../client', mount : '/client.js'
 
 server.get '/', (req, res) ->
-  context =
-    config : config
-    strings : strings
-    show_fb_login_button : yes
-    og_title : strings.title
-    og_description : strings.description
-    og_image : '/assets/mapochovalley-home.png'
-  res.render 'index', context: context
+  model.Person.find (err, user_list) -> 
+    context =
+      config : config
+      strings : strings
+      show_fb_login_button : yes
+      og_title : strings.title
+      og_description : strings.description
+      og_image : '/assets/mapochovalley-home.png'
+      users: user_list
+    res.render 'index', context: context
 
 server.get '/profile/:id', (req, res) ->
   model.get_user req.params.id, (user) =>

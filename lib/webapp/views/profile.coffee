@@ -1,8 +1,14 @@
 
+# Helpers
+
 cbx = (_label, _id) ->
   p ->
     label _label + ':'
     input type:'checkbox', id:_id
+
+# HTML output
+
+coffeescript -> require('./profile').init()
 
 # form
 # we define the structure here, but it will be manipulated on the client side
@@ -15,22 +21,19 @@ form id:'edit-badge-form', style:'display:none', ->
   p ->
     label 'Tagline:', 'for':'i_tagline'
     input id:'i_tagline', type:'text' , class:'required'
-    br()
-    text 'A simple text saying this and that'
   p ->
     label 'Email:', 'for':'i_email'
     input id:'i_email', type:'text' , class:'required email'
   p ->
     label 'Twitter ID:', 'for':'i_twitter_id'
     input id:'i_twitter_id', type:'text'
-    text '@aldonline'
 
 button id:'edit-profile-button', -> 'Edit'
 a href:'/', ->
   img src:'/assets/mapochovalley-home.png', style:'width:360px; height:140px; border:0'
 div style: 'width: 980px; position:relative', ->
-  img src: '/badge/' + @user.id + '.png', width: 200
+  img src: '/badge/' + @user.uid + '.png', width: 200
   div style:'margin-left:400px ; border: 1px solid #ccc', ->
-    img src: @user.pic_url, style:'display:block'
-    a href:@user.link, -> 'Facebook Profile'
+    img src: "http://graph.facebook.com/#{@user.uid}/picture?type=large", style:'display:block'
+    a href: "http://facebook.com/profile.php?id=#{@user.uid}", -> 'Facebook Profile'
   text "<script> require('./common').render_twitter_widget( '#{@user.twitter}' ) </script>" if @user.twitter?
