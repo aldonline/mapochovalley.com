@@ -1,7 +1,6 @@
 express = require 'express'
 coffeekup = require 'coffeekup'
 browserify = require 'browserify'
-facebook_express = require 'facebook-express'
 
 
 badge = require '../badge/core'
