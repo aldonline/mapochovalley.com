@@ -106,7 +106,7 @@ In order to get some users, do the following:
   * Add your mom/dad/girlfriend ;)
   * Create test users ( TODO: explain )
   
-#### Troubleshooting
+#### Module not found exceptions
 
 If you installed as non-root user, and have problems like to "Module not found" exception, that's because the module search paths does not points to the correct module install dir. To know the paths that node is using execute
 
