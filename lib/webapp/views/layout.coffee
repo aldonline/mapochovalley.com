@@ -36,4 +36,3 @@ html ->
                 registration-url="http://'+@config.domain+'/register"
                 fb-only="true"></fb:login-button>'
     div -> @body
-    div id:'fb-root'
