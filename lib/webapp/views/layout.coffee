@@ -29,10 +29,11 @@ html ->
     _s '/client.js'
   body ->
     if @show_fb_login_button
-      text '<fb:login-button id="fb-login-button"
-              autologoutlink="true"
-              registration-url="http://'+@config.domain+'/register" 
-              fb-only="true"></fb:login-button>'
-    div id:'flw'
+      div id:'topbar', ->
+        # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
+        text '<fb:login-button id="fb-login-button"
+                autologoutlink="true"
+                registration-url="http://'+@config.domain+'/register"
+                fb-only="true"></fb:login-button>'
     div -> @body
     div id:'fb-root'

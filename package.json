@@ -1,6 +1,6 @@
 { "name": "mapochovalley.com"
  , "description":  "The MapochoValley.com Website ( Non-Profit Chilean Entrepreneurial Community )"
- , "version":  "0.0.2"
+ , "version":  "0.0.21"
  , "author": "Aldo Bucchi <aldo.bucchi@gmail.com>"
  , "engines": { "node": ">= 0.4" }
  ,"dependencies": {
@@ -12,7 +12,7 @@
    ,"mongoose": ">= 1.1.0"
    ,"browserify": ">= 0.2.3"
    ,"less": ">= 1.0.41"
-   ,"facebook-express": ">= 0.0.21"
+   ,"facebook-express": ">= 0.0.22"
    ,"coffeekup": ">=0.2.2"
  }
  ,"repository":{
