@@ -80,7 +80,7 @@ Things are not ready. You will get a nice error message in the console telling y
     exports.get_config = ->
       app_id: '111111111111'
       app_secret: '111111111111111'
-      domain: 'localhost'
+      url: 'http://localhost'
     
     Replace values by real Facebook App credentials.
 
