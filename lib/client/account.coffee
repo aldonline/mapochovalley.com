@@ -44,6 +44,7 @@ inject = (obj) ->
     if obj[name] is true then c.attr('checked','checked') else c.removeAttr 'checked'
   $('#email').val obj.email
   $('#tagline').val obj.tagline
+  $('#twitter_id').val obj.twitter_id
 
 extract = ->
   obj = {}
@@ -51,5 +52,6 @@ extract = ->
     obj[name] = $('#'+name).attr 'checked'
   obj.email = $('#email').val()
   obj.tagline = $('#tagline').val()
+  obj.twitter_id = $('#twitter_id').val()
   obj
 

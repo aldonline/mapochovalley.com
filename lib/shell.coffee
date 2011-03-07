@@ -19,6 +19,7 @@ class Shell
     model.Person.findOne uid:@uid, (err, person) =>
       person.email = data.email
       person.tagline = data.tagline
+      person.twitter_id = data.twitter_id
       person.is_entrepreneur = data.is_entrepreneur
       person.is_investor = data.is_investor
       person.is_developer = data.is_developer
