@@ -32,7 +32,7 @@ Person = mongoose.model 'Person'
 fbx = facebook_express.create_helper
   app_id: config.app_id
   app_secret: config.app_secret
-  domain: config.domain
+  url: config.url
   registration:
     fields: [
       {name:'name'}
