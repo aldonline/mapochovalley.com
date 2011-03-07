@@ -13,7 +13,7 @@ exports.init = ( server ) ->
     id = req.params.id
     model.Person.findOne uid:id, (err, person) ->
       if person?
-        canvas = generator.generate_badge_canvas 'http://mapochovalley.com/profile/'+person.uid, person.name, person.twitter_id, person.tagline
+        canvas = generator.generate_badge_canvas 'http://mapochovalley.com/profile/'+person.uid, person.badge_name, person.twitter_id, person.tagline
         generator.respond_canvas_as_png canvas, res
       else # TODO: handle 500
         res.statusCode = 404

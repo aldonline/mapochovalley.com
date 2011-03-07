@@ -14,6 +14,7 @@ Person = new Schema
   country: String
   locale: String
     
+  badge_name: String
   tagline : String
   twitter_id : String
   email : String
@@ -39,6 +40,7 @@ fbx = facebook_express.create_helper
       {name:'email'}
     ]
   on_registration: ( data, cb ) ->
+  
     ###
     { algorithm: 'HMAC-SHA256',
       expires: 1299265200,
@@ -51,8 +53,9 @@ fbx = facebook_express.create_helper
       user: { country: 'cl', locale: 'en_US' },
       user_id: '545415493' }
     ###
+    
     p = new Person
-    p.name = data.registration.name
+    p.name = p.badge_name = data.registration.name
     p.email = data.registration.email
     p.uid = data.user_id
     p.country = data.user.country
