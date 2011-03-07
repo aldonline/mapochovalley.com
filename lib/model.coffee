@@ -62,13 +62,8 @@ fbx = facebook_express.create_helper
     
     cb '/profile/' + p.uid
 
-# deprecated. this method is an unnecessary abstraction atop the mongoose API
-get_user = (id, cb) -> Person.findOne {uid:id}, (err, res) -> cb res
-
 exports.Person = Person
 exports.fbx = fbx
-exports.get_user = get_user # <-- deprecated
-
 
 ###
 

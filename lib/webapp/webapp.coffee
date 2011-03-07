@@ -55,7 +55,7 @@ server.get '/', (req, res) ->
     res.render 'index', context: context
 
 server.get '/profile/:id', (req, res) ->
-  model.get_user req.params.id, (user) =>
+  model.Person.findOne uid:req.params.id, (err, user) ->
     context =
       config : config
       strings : strings
@@ -91,7 +91,7 @@ server.get '/account', (req, res) ->
   if not uid = req?.fbx_cookie?.uid
     res.send 'Not Authorized', 501
     return
-  model.get_user uid, (user) =>
+  model.Person.findOne uid:uid, (err, user) ->
     context =
       show_fb_login_button : yes
       show_edit_account_button : no 
