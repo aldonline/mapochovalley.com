@@ -62,13 +62,6 @@ fbx = facebook_express.create_helper
     
     cb '/profile/' + p.uid
 
-
-class User
-  constructor : (@id) ->
-    @mv_url = "http://dev.mapochovalley.com/#{@id}"
-    @pic_url = "http://graph.facebook.com/#{@id}/picture?type=large"
-  add_fb_object : (obj) -> ( this[k] = v ) for k, v of obj
-
 # deprecated. this method is an unnecessary abstraction atop the mongoose API
 get_user = (id, cb) -> Person.findOne {uid:id}, (err, res) -> cb res
 
