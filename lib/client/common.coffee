@@ -1,4 +1,4 @@
-
+###
 render_twitter_widget = (profile) ->
   tw = new TWTR.Widget
     version: 2
@@ -31,3 +31,4 @@ render_twitter_widget = (profile) ->
   tw.start()
 
 exports.render_twitter_widget = render_twitter_widget
+###
