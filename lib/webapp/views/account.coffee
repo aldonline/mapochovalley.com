@@ -50,6 +50,4 @@ div class:'container-left', ->
 div class:'container-right', ->
   div class:'badge', ->
     p "Your badge:"
-    img src: '/badge/' + @user.uid + '.png', width: 200 
-    div style:'margin-left:400px ; border: 1px solid #ccc', ->
-    a href:"/badge/#{@user.uid}/print", -> "Print"
+    img src: '/badge/' + @user.uid + '.png', width: 200
