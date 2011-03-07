@@ -63,7 +63,7 @@ express has not (yet) caught up with connect. In particular, it has been reporte
 
     npm install connect@0.5.10
 
-#### Install and Run
+### Install and Run
 
 Everything is ready. You can now try to run the app. Use sudo as the app will try to listen on port 80 by default.
 
@@ -106,7 +106,7 @@ In order to get some users, do the following:
   * Add your mom/dad/girlfriend ;)
   * Create test users ( TODO: explain )
   
-#### Module not found exceptions
+### Module not found exceptions
 
 If you installed as non-root user and run into a "Module not found" exception, that's probably because the module search path(s) do not point to the correct module install dir. To see the paths that node is using execute:
 
