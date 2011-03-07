@@ -21,6 +21,10 @@ div class:'container-left', ->
         width:360
         height:140
         border:0
+    p '''
+      Your Mapocho Valley account is connected to your Facebook Profile.
+      Most of the data comes from Facebook.
+    '''
 
   div class:'facebook-profile', ->
     p class:'title', -> "Update your profile data:"
