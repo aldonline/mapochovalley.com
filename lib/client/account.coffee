@@ -5,8 +5,8 @@ set_busy = ( flag ) -> get_form().css opacity: if flag then .5 else 1
 reload_badge_image = ->
   img = $('#badge-img')
   src = img.attr 'src'
-  src.split('?')[0] + '?' + (new Date).getTime()
-  img.attr src:src
+  img.attr src: src.split('?')[0] + '?' + (new Date).getTime()
+  img.hide().fadeIn()
 
 exports.init = ->
   $ ->
