@@ -14,6 +14,7 @@ Person = new Schema
   country: String
   locale: String
     
+  tagline : String
   twitter_id : String
   email : String
   meetup_id : String
