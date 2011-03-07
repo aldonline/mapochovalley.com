@@ -17,6 +17,8 @@ html ->
     title ( if @title? then @title + ' @ ' else '' ) + @strings.title
     meta(name: 'description', content: @description) if @description?
     _c '/css/styles.css'
+    _c 'http://fonts.googleapis.com/css?family=Permanent+Marker'
+    _c 'http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold'
     _c '/css/smoothness/jquery-ui-1.8.7.custom.css'
     _s 'http://widgets.twimg.com/j/2/widget.js'
     _s '/js-lib/jquery-1.4.4.min.js'
@@ -27,12 +29,18 @@ html ->
     _s '/___minirpc.js'
     _s '/__fbx.js'
     _s '/client.js'
-  body ->
-    if @show_fb_login_button
-      div id:'topbar', ->
-        # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
-        text '<fb:login-button id="fb-login-button"
-                autologoutlink="true"
-                registration-url="http://'+@config.domain+'/register"
-                fb-only="true"></fb:login-button>'
-    div -> @body
+  body class:"index", ->
+    div class:'nav', ->
+      ul ->
+        li -> 
+          a href:"/", -> 
+            "Home"
+        li -> 
+          if @show_fb_login_button
+            # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
+            text '<fb:login-button id="fb-login-button"
+                    autologoutlink="true"
+                    registration-url="http://'+@config.domain+'/register"
+                    fb-only="true"></fb:login-button>'
+    div class:'container', ->
+      @body
