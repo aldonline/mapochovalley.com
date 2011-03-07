@@ -60,4 +60,4 @@ html ->
             img src:"http://www.w3.org/html/logo/badge/html5-badge-h-solo.png", width:"63", height:"64", alt:"HTML5 Powered", title:"HTML5 Powered"
         div class:'footer-right', ->
           p "This site is licensed under a Creative Commons Attribution 2.0 share alike license. Feel free to change, reuse modify and extend it."
-          a href:'http://github.com/aldonline/mapochovalley.com', -> "Fork me at onGithub"
+          a href:'http://github.com/aldonline/mapochovalley.com', -> "Fork me on Github"
