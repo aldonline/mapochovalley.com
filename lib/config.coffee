@@ -18,7 +18,7 @@ catch error
   exports.get_config = ->
     app_id: "111111111111"
     app_secret: "111111111111111"
-    domain: "localhost"
+    url: "http://localhost"
 
   Replace placeholder values by real Facebook App credentials.
   This file is .gitignored so it will remain local to your machine
