@@ -17,6 +17,7 @@ class Shell
   # updates the current user's data
   set_badge_data : ( data, cb ) ->
     model.Person.findOne uid:@uid, (err, person) =>
+      person.badge_name = data.badge_name or= person.name
       person.email = data.email
       person.tagline = data.tagline
       person.twitter_id = data.twitter_id

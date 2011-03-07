@@ -29,20 +29,29 @@ div class:'container-left', ->
   div class:'facebook-profile', ->
     p class:'title', -> "Update your profile data:"
     a href:'#', -> img src: "http://graph.facebook.com/#{@user.uid}/picture?type=large"
+    a href:"/profile/#{@user.uid}", -> div 'Go to Mapocho Valley Profile'
+
     form id:'edit-account-form', ->
       cbx 'Investor', 'is_investor'
       cbx 'Entrepreneur', 'is_entrepreneur'
       cbx 'Developer', 'is_developer'
       cbx 'Start-Up Chile Entrepreneur', 'is_sup'
+      
       p ->
-        label 'Tagline:', 'for':'tagline'
-        input id:'tagline', type:'text' , class:'required'
+        div -> label 'Name on Badge:', 'for':'tagline'
+        div -> input id:'badge_name', type:'text' , class:'required'
+      
       p ->
-        label 'Email:', 'for':'email'
-        input id:'email', type:'text' , class:'required email'
+        div -> label 'Tagline:', 'for':'tagline'
+        div -> input id:'tagline', type:'text' , class:'required'
+
       p ->
-        label 'Twitter ID:', 'for':'twitter_id'
-        input id:'twitter_id', type:'text'
+        div -> label 'Email:', 'for':'email'
+        div -> input id:'email', type:'text' , class:'required email'
+
+      p ->
+        div -> label 'Twitter ID:', 'for':'twitter_id'
+        div -> input id:'twitter_id', type:'text'
       
     button id:'save-account-button', -> 'Save Changes'
         

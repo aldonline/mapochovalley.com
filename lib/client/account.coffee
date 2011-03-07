@@ -45,6 +45,7 @@ inject = (obj) ->
   $('#email').val obj.email
   $('#tagline').val obj.tagline
   $('#twitter_id').val obj.twitter_id
+  $('#badge_name').val obj.badge_name
 
 extract = ->
   obj = {}
@@ -53,5 +54,6 @@ extract = ->
   obj.email = $('#email').val()
   obj.tagline = $('#tagline').val()
   obj.twitter_id = $('#twitter_id').val()
+  obj.badge_name = $('#badge_name').val()
   obj
 
