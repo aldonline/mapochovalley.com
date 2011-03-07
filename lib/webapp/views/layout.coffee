@@ -35,6 +35,8 @@ html ->
         li -> 
           a href:"/", -> 
             "Home"
+        if @show_edit_account_button
+          li -> a href:"/account", -> "Edit Account"
         li -> 
           if @show_fb_login_button
             # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'

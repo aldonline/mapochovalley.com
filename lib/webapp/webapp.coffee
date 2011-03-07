@@ -47,6 +47,7 @@ server.get '/', (req, res) ->
       config : config
       strings : strings
       show_fb_login_button : yes
+      show_edit_account_button : req.fbx_cookie?
       og_title : strings.title
       og_description : strings.description
       og_image : '/assets/mapochovalley-home.png'
@@ -61,6 +62,7 @@ server.get '/profile/:id', (req, res) ->
       title : user.name
       user : user
       show_fb_login_button : yes
+      show_edit_account_button : req.fbx_cookie?
       og_title : "#{user.name}'s profile @ #{strings.title}"
       og_description : "#{user.name}'s profile @ #{strings.title}"
       # could use a more personalized image here. good for FB share
@@ -70,18 +72,35 @@ server.get '/profile/:id', (req, res) ->
 
 server.get '/register', (req, res) ->
   # if user is already logged in, redirect to profile
-  if  (c = req.session?.fbx_cookie )?
+  if req.fbx_cookie?
     res.writeHead 302, Location: '/profile/' + c.uid
     res.end()
+    return
   context = 
     config : config
     fbx : fbx
     strings : strings
     show_fb_login_button : no
+    show_edit_account_button : no
     og_title : 'Register @ ' + strings.title
     og_description : strings.description
     og_image : '/assets/mapochovalley-home.png'
   res.render 'register', context: context
+
+server.get '/account', (req, res) ->
+  if not uid = req?.fbx_cookie?.uid
+    res.send 'Not Authorized', 501
+    return
+  model.get_user uid, (user) =>
+    context =
+      show_fb_login_button : yes
+      show_edit_account_button : no 
+      config : config
+      strings : strings
+      title : user.name
+      user : user
+      uid : req.fbx_cookie?.uid
+    res.render 'account', context: context
 
 server.listen port
 console.log 'Mapocho Valley App listening on port ' + port
