@@ -19,7 +19,6 @@ div class:'container-left', ->
     p class:'title', -> @user.name
     a href:'#', -> img src: "http://graph.facebook.com/#{@user.uid}/picture?type=large"
     a href:"http://facebook.com/profile.php&id=#{@user.uid}", target:"_blank", -> div 'Go to Facebook Profile'
-    a href:"/account/", -> div 'Edit Account'
 
 div class:'container-right', ->
   div class:'badge', ->
