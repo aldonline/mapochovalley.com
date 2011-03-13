@@ -1,4 +1,5 @@
 util = require 'util'
+express = require 'express'
 
 generator = require './generator'
 model = require '../model'
@@ -19,6 +20,9 @@ exports.init = ( server ) ->
       else # TODO: handle 500
         res.statusCode = 404
         res.send 'badge not found'
+  
+  # to serve independent icons to the UI for preview
+  server.use '/icons', express.staticProvider __dirname + '/icons'
   
   # used during development
   server.get '/badgetest.png', (req, res) ->
