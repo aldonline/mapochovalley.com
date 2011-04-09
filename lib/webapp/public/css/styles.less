@@ -1,5 +1,6 @@
 @droid: "Droid Serif",Georgia,serif,"Times New Roman";
 @lucida: 'Lucida Grande','Lucida Sans Unicode',Verdana,sans-serif;
+@marker: 'Permanent Marker', arial, serif;
 
 body {
     background-color: #FFFFFF;
@@ -15,14 +16,33 @@ body {
   margin: 0 auto;
 }
 
+#steps {
+  background-color: #eee;
+  font-family: @marker;
+  font-size: 22px;
+
+}
+
 .username {
   margin: 10 auto;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .container {
   clear: none;
 }
+
+.container-left-index {
+  float: left;
+  width: 350px;
+}
+
+.container-right-index {
+  text-align: left;
+  margin-left: 390px;
+  width: 550px;
+}
+
 
 .container-left {
   text-align: right;
@@ -111,7 +131,9 @@ h1 {
     margin-bottom: 20px;
 }
 h2 {
-    color: #232323;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    color: #ccc;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
