@@ -17,7 +17,7 @@ div class: 'container container-left-index', ->
 
 div class:'container container-right-index faq', ->
   
-  h2 'About Mapocho Valley'  
+  h2 id:'mapocho-header', -> 'About Mapocho Valley'  
   
   p -> 'Mapocho Valley is the Chilean Entrepreneurial Community'
   
@@ -26,7 +26,7 @@ div class:'container container-right-index faq', ->
   We don't want to repeat what you can already find on Facebook or Meetup.com.
   """
 
-  h2 'Your Mapocho Badge'
+  h2 id:'badge-header', -> 'Your Mapocho Badge'
 
   p -> 'The Mapocho Badge is meant for you to use it when attending a meetup, event
   or conference.'
@@ -39,9 +39,8 @@ div class:'container container-right-index faq', ->
     We integrate with Meetup.com so it is easy to request all badges for
     a given meetup.
     """
-
   
-  h2 'Mapocho Meetups'
+  h2 id:'meetup-header', -> 'Mapocho Meetups'
   
   p -> """Meetups are a great way to meet people."""
 
@@ -52,7 +51,7 @@ div class:'container container-right-index faq', ->
     We can help you. To create a meetup you need a venue.
     """
   
-  h2 'Mapocho Points'
+  h2 id:'points-header', -> 'Mapocho Points'
   
   h3 id:'faq-points', -> 'How do I earn Mapocho Points?'
   p -> """

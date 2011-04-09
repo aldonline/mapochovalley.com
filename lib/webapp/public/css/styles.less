@@ -28,6 +28,30 @@ body {
   }
 }
 
+.header-with-icon {
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+#mapocho-header {
+  .header-with-icon;
+  background-image: url('/assets/header-icons/mapocho.png');
+}
+#badge-header {
+  .header-with-icon;
+  background-image: url('/assets/header-icons/badge.png');
+}
+#meetup-header {
+  .header-with-icon;
+  background-image: url('/assets/header-icons/meetup.png');
+}
+#points-header {
+  .header-with-icon;
+  background-image: url('/assets/header-icons/points.png');
+}
+
+
+
 .points-table {
   font-size: 13px;
 }
@@ -145,6 +169,7 @@ h1 {
     margin-bottom: 20px;
 }
 h2 {
+    height: 50px;
     width: 100%;
     border-bottom: 1px solid #eee;
     color: #ccc;

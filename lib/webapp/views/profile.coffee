@@ -17,7 +17,11 @@ div class:'container container-left', ->
     br()
     a href:'/#faq-why-so-simple', -> ' ( why? )'
 
+badge_url = '/badge/' + @user.uid + '.png'
 
 div class:'container container-right', ->
   div class:'badge', ->
-    img src: '/badge/' + @user.uid + '.png', width: 300 
+    a href: badge_url, ->
+      img src: badge_url, width: 300
+  a href: badge_url, -> 'Print this Badge'
+  p -> '( If you print at 300dpi it will fit in a badge holder )'
