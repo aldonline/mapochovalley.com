@@ -106,5 +106,11 @@ server.get '/account', (req, res) ->
       uid : req.fbx_cookie?.uid
     res.render 'account', context: context
 
+server.get '/meetups', (req, res) ->
+  context =
+    config : config
+    strings : strings
+  res.render 'meetups', context: context
+
 server.listen port
 console.log 'Mapocho Valley App listening on port ' + port
