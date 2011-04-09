@@ -29,35 +29,35 @@ html ->
     _s '/___minirpc.js'
     _s '/__fbx.js'
     _s '/client.js'
-  body class:"index", ->
-    section -> 
-      div class:'nav', ->
-        ul ->
-          li -> 
-            a href:"/", -> 
-              "Home"
-          if @show_edit_account_button
-            li -> a href:"/account", -> "Edit Account"
-          li -> 
-            if @show_fb_login_button
-              # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
-              text '<fb:login-button id="fb-login-button"
-                      autologoutlink="true"
-                      registration-url="http://'+@config.domain+'/register"
-                      fb-only="true"></fb:login-button>'
-                      
-    section ->
-      div class:'container', ->
-        @body
-        
-    section id:'dots', ->
-      p "......"
-      
-    footer ->
-      div class:'footer', ->
-        div class:'footer-left', ->
-          a href:"http://www.w3.org/html/logo/", ->
-            img src:"http://www.w3.org/html/logo/badge/html5-badge-h-solo.png", width:"63", height:"64", alt:"HTML5 Powered", title:"HTML5 Powered"
-        div class:'footer-right', ->
-          p "This site is licensed under a Creative Commons Attribution 2.0 share alike license. Feel free to change, reuse modify and extend it."
-          a href:'http://github.com/aldonline/mapochovalley.com', -> "Fork me on Github"
+  body ->
+  
+    div id:'main-container', ->
+  
+      # ------ navigation ( top bar )
+      section -> 
+        div class:'nav', ->
+          ul ->
+            li -> 
+              a href:"/", -> 
+                "Home"
+            if @show_edit_account_button
+              li -> a href:"/account", -> "Edit Account"
+            li -> 
+              if @show_fb_login_button
+                # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
+                text '<fb:login-button id="fb-login-button"
+                        autologoutlink="true"
+                        registration-url="http://'+@config.domain+'/register"
+                        fb-only="true"></fb:login-button>'
+    
+      # ------ content
+      section ->
+        div class:'main-container', ->
+          center ->
+            a href:'/', ->
+              img 
+                src:'/assets/mapochovalley-home.png'
+                width:360
+                height:140
+                border:0
+          @body
