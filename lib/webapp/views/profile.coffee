@@ -2,7 +2,7 @@
 
 coffeescript -> require('./profile').init()
 
-fb_url = "http://facebook.com/profile.php&id=#{@user.uid}"
+fb_url = "http://facebook.com/profile.php?id=#{@user.uid}"
 
 center ->
   p class:'username', -> @user.name
