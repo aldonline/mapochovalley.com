@@ -14,7 +14,7 @@ fbx = model.fbx
 port = config.port or 80
 
 console.log ''
-console.log 'Load Mapocho Valley Web App with the following Configuration:'
+console.log 'Started Mapocho Valley Web App with the following Configuration:'
 console.log JSON.stringify config
 
 ## --- create and configure server
