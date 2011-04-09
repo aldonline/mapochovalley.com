@@ -32,3 +32,10 @@ render_twitter_widget = (profile) ->
 
 exports.render_twitter_widget = render_twitter_widget
 ###
+
+init = -> $ ->
+  nav = $('.nav')
+  nav.css opacity:.4
+  nav.hover ( -> nav.css opacity:1 ), ( -> nav.css opacity:.5 )
+
+exports.init = init

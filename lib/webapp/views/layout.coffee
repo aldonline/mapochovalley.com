@@ -29,6 +29,7 @@ html ->
     _s '/___minirpc.js'
     _s '/__fbx.js'
     _s '/client.js'
+    coffeescript -> require('./common').init()
   body ->
   
     div id:'main-container', ->
