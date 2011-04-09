@@ -120,6 +120,11 @@ server.get '/account', (req, res) ->
 
 server.get '/meetups', (req, res) ->
   context =
+    nav:
+      home: yes
+      login: yes
+      account: yes
+      profile: yes
     config : config
     strings : strings
   res.render 'meetups', context: context
