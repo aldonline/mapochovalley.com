@@ -67,35 +67,35 @@ div class:'container container-right-index faq', ->
       th 'Concept'
       th 'Points'
     tr ->
-      td -> 'Attend a Meetup'
+      td -> 'Attend a meetup'
       td -> '1'
     tr ->
-      td -> 'Help a Meetup Organizer'
+      td -> 'Volunteer to help a meetup organizer'
       td -> '3'
     tr ->
-      td -> 'Speak in a Meetup'
+      td -> 'Speak in a meetup'
       td -> '5'
     tr ->
-      td -> 'Organize a Meetup'
+      td -> 'Organize a meetup'
       td -> '10'
     tr ->
-      td -> 'Speak in a Meetup and Publish a Video Recording'
+      td -> 'Speak in a meetup and publish a video recording'
       td -> '10'
     tr ->
-      td -> 'Speak in a Meetup and Publish a Video Recording in English'
+      td -> 'Speak in a meetup and publish a video recording in english'
       td -> '12'
     tr ->
-      td -> 'Start a Startup'
+      td -> 'Start a startup'
       td -> '20'
     tr ->
-      td -> 'Sell your Startup for 10MM USD ;)'
+      td -> 'Sell your startup for 10 million dolars'
       td -> '100'
   
-  p 'You also get 3 points each month that you must give to three different members'
+  p 'You will also get a variable amount of "gift" points each month that you must give to different members'
   
   
   h3 id:'faq-points-why', -> 'Why Should I care?'
   p -> """
     These points correspond roughly to the value you have in the network.
-    ( TODO: more on this )
+    Also, you will have access to benefits ( free drinks, even tickets, etc )
     """
