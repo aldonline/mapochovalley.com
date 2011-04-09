@@ -23,5 +23,7 @@ div class:'container container-right', ->
   div class:'badge', ->
     a href: badge_url, ->
       img src: badge_url, width: 300
-  a href: badge_url, -> 'Print this Badge'
-  p -> '( If you print at 300dpi it will fit in a badge holder )'
+  p -> 
+    text 'If you print '
+    a href: badge_url, -> 'this badge'
+    text ' at 300dpi it will fit in a badge holder'
