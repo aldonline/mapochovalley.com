@@ -37,18 +37,22 @@ html ->
       section -> 
         div class:'nav', ->
           ul ->
-            li -> 
-              a href:"/", -> 
-                "Home"
-            if @show_edit_account_button
+            if @nav.home
+              li -> a href:"/", -> "Home"
+            if @nav.account
               li -> a href:"/account", -> "Edit Account"
-            li -> 
-              if @show_fb_login_button
-                # text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
-                text '<fb:login-button id="fb-login-button"
-                        autologoutlink="true"
-                        registration-url="http://'+@config.domain+'/register"
-                        fb-only="true"></fb:login-button>'
+            if @nav.profile
+              li -> a href:"/profile", -> "View Profile"
+            if @nav.login
+              #li -> 
+              #  a href:'/profile', ->
+              #    text '<fb:profile-pic uid="loggedinuser" linked="false"></fb:profile-pic>'
+              li ->
+                div style:'width:180px; display:inline-block', ->
+                  text '<fb:login-button id="fb-login-button"
+                          autologoutlink="true"
+                          registration-url="http://'+@config.domain+'/register"
+                          fb-only="true"></fb:login-button>'
     
       # ------ content
       section ->

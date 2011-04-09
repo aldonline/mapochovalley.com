@@ -46,8 +46,11 @@ server.get '/', (req, res) ->
     context =
       config : config
       strings : strings
-      show_fb_login_button : yes
-      show_edit_account_button : req.fbx_cookie?
+      nav:
+        home: no
+        login: yes
+        account: req.fbx_cookie?
+        profile: req.fbx_cookie?
       og_title : strings.title
       og_description : strings.description
       og_image : '/assets/mapochovalley-home.png'
@@ -65,8 +68,11 @@ server.get '/profile/:id', (req, res) ->
       strings : strings
       title : user.name
       user : user
-      show_fb_login_button : yes
-      show_edit_account_button : req.fbx_cookie?
+      nav:
+        home: yes
+        login: yes
+        account: req.fbx_cookie?
+        profile: no
       og_title : "#{user.name}'s profile @ #{strings.title}"
       og_description : "#{user.name}'s profile @ #{strings.title}"
       # could use a more personalized image here. good for FB share
@@ -84,8 +90,11 @@ server.get '/register', (req, res) ->
     config : config
     fbx : fbx
     strings : strings
-    show_fb_login_button : no
-    show_edit_account_button : no
+    nav:
+      home: yes
+      login: no
+      account: no
+      profile: no
     og_title : 'Register @ ' + strings.title
     og_description : strings.description
     og_image : '/assets/mapochovalley-home.png'
@@ -97,8 +106,11 @@ server.get '/account', (req, res) ->
     return
   model.Person.findOne uid:uid, (err, user) ->
     context =
-      show_fb_login_button : yes
-      show_edit_account_button : no 
+      nav:
+        home: yes
+        login: yes
+        account: no
+        profile: yes
       config : config
       strings : strings
       title : user.name
