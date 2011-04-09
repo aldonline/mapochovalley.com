@@ -18,6 +18,8 @@ div class: 'container container-left-index', ->
         span class:'done', -> 'Join'
     li -> a href:'/account', -> 'Customize your Badge'
     li -> a href:'/meetups', -> 'Attend the Meetups'
+  
+  text '<fb:like-box href="http://www.facebook.com/pages/Mapocho-Valley/112895178787730" width="350" show_faces="false" stream="true" header="false"></fb:like-box>'
 
 div class:'container container-right-index faq', ->
   
