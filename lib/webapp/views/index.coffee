@@ -23,15 +23,13 @@ div class:'container container-right-index faq', ->
   
   h3 id:'faq-why-so-simple', -> 'Why is this website so simple?'
   p -> """
-  We don't want to repeat what you can already find on Facebook.
-  We believe Facebook is an excellent social platform.
-  You won't meet someone by talking to him 2 hours.
-  Facebook provides the perfect solution to keep in touch.
+  We don't want to repeat what you can already find on Facebook or Meetup.com.
   """
-  
-  h2 'Meetups'
-  
-  p -> """Meetups are a great way to meet people."""
+
+  h2 'Your Mapocho Badge'
+
+  p -> 'The Mapocho Badge is meant for you to use it when attending a meetup, event
+  or conference.'
 
   h3 id:'faq-attend-meetup', -> 'I am going to a meetup. How do I get my badge?'
   p -> """
@@ -42,27 +40,59 @@ div class:'container container-right-index faq', ->
     a given meetup.
     """
 
+  
+  h2 'Mapocho Meetups'
+  
+  p -> """Meetups are a great way to meet people."""
+
   h3 id:'faq-create-meetup', -> 'I want to create my own meetup, what do I do?'
   p -> """
     First, make sure you are not creating a meetup that already exists.
     It is better to join an existing group than create your own meetup.
     We can help you. To create a meetup you need a venue.
-    """  
-  
-  
-  h2 'Stars'
-  
-  h3 id:'faq-stars', -> 'How do I earn stars?'
-  p -> """
-    You get 1/4th of a star for every meetup you attend,
-    and 1 star for every time you speak.
-    Click here to see more ways to earn stars
     """
-
-  h3 id:'faq-stars', -> 'Why would I care?'
+  
+  h2 'Mapocho Points'
+  
+  h3 id:'faq-points', -> 'How do I earn Mapocho Points?'
   p -> """
-    You get 1/4th of a star for every meetup you attend,
-    and 1 star for every time you speak.
-    Click here to see more ways to earn stars
+    You earn Mapocho Points by participating in the community.
+    Here are some things you can do:
     """
-
+  table class:'points-table', ->
+    tr ->
+      th 'Concept'
+      th 'Points'
+    tr ->
+      td -> 'Attend a Meetup'
+      td -> '1'
+    tr ->
+      td -> 'Help a Meetup Organizer'
+      td -> '3'
+    tr ->
+      td -> 'Speak in a Meetup'
+      td -> '5'
+    tr ->
+      td -> 'Organize a Meetup'
+      td -> '10'
+    tr ->
+      td -> 'Speak in a Meetup and Publish a Video Recording'
+      td -> '10'
+    tr ->
+      td -> 'Speak in a Meetup and Publish a Video Recording in English'
+      td -> '12'
+    tr ->
+      td -> 'Start a Startup'
+      td -> '20'
+    tr ->
+      td -> 'Sell your Startup for 10MM USD ;)'
+      td -> '100'
+  
+  p 'You also get 3 points each month that you must give to three different members'
+  
+  
+  h3 id:'faq-points-why', -> 'Why Should I care?'
+  p -> """
+    These points correspond roughly to the value you have in the network.
+    ( TODO: more on this )
+    """
