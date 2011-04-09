@@ -51,6 +51,8 @@ server.get '/', (req, res) ->
         login: yes
         account: req.fbx_cookie?
         profile: req.fbx_cookie?
+      steps:
+        join: not req.fbx_cookie?
       og_title : strings.title
       og_description : strings.description
       og_image : '/assets/mapochovalley-home.png'

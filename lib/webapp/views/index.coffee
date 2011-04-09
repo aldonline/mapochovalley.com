@@ -11,7 +11,11 @@ div class:'users', ->
 
 div class: 'container container-left-index', ->
   ol id:'steps', ->
-    li -> a href:'/register', -> 'Join'
+    li -> 
+      if @steps.join
+        a href:'/register', -> 'Join'
+      else
+        span class:'done', -> 'Join'
     li -> a href:'/account', -> 'Customize your Badge'
     li -> a href:'/meetups', -> 'Attend the Meetups'
 
