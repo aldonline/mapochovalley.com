@@ -11,9 +11,9 @@ div class:'users', ->
 
 div class: 'container container-left-index', ->
   ol id:'steps', ->
-    li -> 'Join'
-    li -> 'Customize your Badge'
-    li -> 'Attend the Meetups'
+    li -> a href:'/register', -> 'Join'
+    li -> a href:'/account', -> 'Customize your Badge'
+    li -> a href:'/meetups', -> 'Attend the Meetups'
 
 div class:'container container-right-index faq', ->
   
