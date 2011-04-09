@@ -54,6 +54,10 @@ server.get '/', (req, res) ->
       users: user_list
     res.render 'index', context: context
 
+server.get '/profile', ( req, res ) ->
+  res.writeHead 302, Location: '/profile/' + req.fbx_cookie.uid
+  res.end()
+
 server.get '/profile/:id', (req, res) ->
   model.Person.findOne uid:req.params.id, (err, user) ->
     context =
@@ -72,7 +76,7 @@ server.get '/profile/:id', (req, res) ->
 
 server.get '/register', (req, res) ->
   # if user is already logged in, redirect to profile
-  if req.fbx_cookie?
+  if (c=req.fbx_cookie)?
     res.writeHead 302, Location: '/profile/' + c.uid
     res.end()
     return
