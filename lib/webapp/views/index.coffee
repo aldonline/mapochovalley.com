@@ -19,10 +19,9 @@ div class:'container container-right-index faq', ->
   
   h2 'About Mapocho Valley'  
   
-  h3 id:'faq-what', -> 'What is this?'
   p -> 'Mapocho Valley is the Chilean Entrepreneurial Community'
   
-  h3 id:'faq-why-so-simple', -> 'Why so simple?'
+  h3 id:'faq-why-so-simple', -> 'Why is this website so simple?'
   p -> """
   We don't want to repeat what you can already find on Facebook.
   We believe Facebook is an excellent social platform.
