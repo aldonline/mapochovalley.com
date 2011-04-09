@@ -32,5 +32,12 @@ class DeferredExecutor
     func() for func in @funcs
     delete @funcs
 
+fade = ( elm, opacity ) ->
+  opacity ?= .5
+  elm = $ elm
+  elm.css opacity:.5
+  elm.hover ( -> elm.css opacity:1 ), ( -> elm.css opacity:opacity )
+
 exports.ValueBuffer = ValueBuffer
 exports.DeferredExecutor = DeferredExecutor
+exports.fade = fade

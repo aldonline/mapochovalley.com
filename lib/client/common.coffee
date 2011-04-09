@@ -1,3 +1,4 @@
+util = require './util'
 ###
 render_twitter_widget = (profile) ->
   tw = new TWTR.Widget
@@ -34,8 +35,6 @@ exports.render_twitter_widget = render_twitter_widget
 ###
 
 init = -> $ ->
-  nav = $('.nav')
-  nav.css opacity:.4
-  nav.hover ( -> nav.css opacity:1 ), ( -> nav.css opacity:.5 )
+  util.fade $ '.nav'
 
 exports.init = init

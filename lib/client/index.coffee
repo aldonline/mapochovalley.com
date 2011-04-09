@@ -1,2 +1,4 @@
-exports.init = ->
-  console.log 'nothing to init in home script'
+util = require './util'
+
+exports.init = -> $ ->
+  util.fade '#fb-like-box', .7
