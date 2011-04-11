@@ -52,7 +52,7 @@ html ->
                 div style:'width:180px; display:inline-block', ->
                   text '<fb:login-button id="fb-login-button"
                           autologoutlink="true"
-                          registration-url="http://'+@config.domain+'/register"
+                          registration-url="'+@config.url+'/register"
                           fb-only="true"></fb:login-button>'
     
       # ------ content

@@ -1,0 +1,20 @@
+@prefix mv: <http://mapochovalley.com/id/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# mv:mv mv:member mv:fb545415493 .
+mv:mv mv:member mv:fb673484239 .
+
+#mv:fb545415493
+#  foaf:name "Aldo Bucchi" ;
+#  mv:badge_name "Aldo Bucchi C" ;
+#  mv:facebook_id 545415493 ;
+#  foaf:mbox <mailto:aldo.bucchi@gmail.com> ;
+#  mv:tag "developer", "entrepreneur"
+#  .
+
+mv:fb673484239
+  foaf:name "Veronica Bennett" ;
+  mv:facebook_id 673484239 ;
+  foaf:mbox <mailto:bennettveronica@yahoo.com> ;
+  mv:tag "doctor"
+  .

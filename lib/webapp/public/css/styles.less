@@ -70,6 +70,9 @@ body {
   font-size: 25px;
 }
 
+
+// --------- containers ( columns )
+
 .container {
   clear: none;
 }
@@ -97,13 +100,28 @@ body {
   width: 450px;
 }
 
-div.users {
-  width: 700px;
-  margin: 0 auto;
-}
+// ---- account
 
-form {
+#account-table {
+  padding: 0px;
+  margin: 0px;
+  td {
+    vertical-align:top;
+  }
+  .td1 {
+    width: 340px;
+    text-align:right;
+  }
+  .td2 {
+    width: 300px;
+  }
+  .td3 {
+    width: 340px;
+  }
+  
   label {
+    line-height: 20px;
+    font-family: Verdana;
     margin: 0 5px 0 0;
     font-size: 12px;
   }
@@ -111,7 +129,27 @@ form {
     border: 1px solid #aaa;
     padding: 2px;
   }
+  p {
+    line-height: 20px;
+    vertical-align: middle;
+    margin: 0px;
+    padding: 2px;
+  }
+  #save-account-button {
+    margin-top: 10px;
+    font-weight: bold;
+  }
 }
+
+
+
+
+
+div.users {
+  width: 700px;
+  margin: 0 auto;
+}
+
 
 div.badge {
   img {

@@ -1,5 +1,4 @@
 assert = require 'assert'
-sparql = require 'sparql'
 
 shortcuts = 
   c: 'cardinality'
@@ -102,6 +101,9 @@ generate_secondary_load_queries = ( graph, uri, fields ) ->
 
 load_record = (client, graph, uri, fields, cb) ->
   record = {}
+  record.save = (cb) -> # closure. will remember settings
+    save_record client, graph, uri, fields, record, cb
+  
   queries = generate_secondary_load_queries graph, uri, fields
   queries.push generate_primary_load_query graph, uri, fields
   pending = queries.length
@@ -112,6 +114,18 @@ load_record = (client, graph, uri, fields, cb) ->
         rdf_value_arr = (v for v in rdf_value_arr when v?) # filter nulls
         record[field_name] = field.decode_and_unbox rdf_value_arr
       cb null, record if --pending is 0
+
+# TODO: mantain order
+load_records = (client, graph, query, fields, cb) ->
+  records = []
+  client.col query, (err, res) ->
+    pending = res.length
+    i = 0
+    for uri_s in res
+      uri_n = "<#{uri_s.value}>"
+      load_record client, graph, uri_n, fields, (err, res) ->
+        records.push res
+        cb null, records if --pending is 0
 
 save_record = (client, graph, uri, fields, record, cb) ->
   # count how many queries we will fire
@@ -125,37 +139,10 @@ save_record = (client, graph, uri, fields, record, cb) ->
         console.log err
       cb? null, yes if --pending is 0
 
-person_fields = 
-  name:
-    new Field p: 'foaf:name', c: [1,1]
-  email:
-    new Field p: 'foaf:mbox', t: Email, c: [1,1]
-  uid: 
-    new Field p: 'mv:facebook_id', t: Number, c: [0,1]
-  country: 
-    new Field path: 'mv:country'
-  locale: 
-    new Field path: 'mv:locale'
-  badge_name: 
-    new Field path: 'mv:badge_name'
-  tagline: 
-    new Field path: 'mv:tagline'
-  twitter_id: 
-    new Field path: 'mv:twitter_id'
-  meetup_id: 
-    new Field path: 'mv:meetup_id'
-  tags: 
-    new Field path: 'mv:tag', c: [0,-1]
-
-client = new sparql.Client 'http://localhost:8898/sparql'
-client.prefix_map = 
-  mv : 'http://mapochovalley.com/id/'
-
-load_record client, null, 'mv:fb545415493', person_fields, (err, record) -> 
-  console.log record
-  record.name = 'Aldo Bucchi Z'
-  record.tags.push 'superhero'
-  save_record client, 'mv:graph', 'mv:fb545415493', person_fields, record, (err, res) ->
-    console.log 'saved record'
-
+# kludge:
+exports.load_record = load_record
+exports.load_records = load_records
+exports.save_record = save_record
+exports.Email = Email
+exports.Field = Field
 

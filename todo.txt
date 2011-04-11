@@ -1,0 +1,7 @@
+when registering new user /register goes to hell
+
+when user is looking at his own badge, there should be a visible link to "edit account"
+
+on logout, redirect to /
+
+ask for more facebook fields

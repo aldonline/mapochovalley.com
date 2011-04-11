@@ -1,0 +1,1 @@
+isql localhost:1118 dba dba init.sql

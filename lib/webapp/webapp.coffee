@@ -42,7 +42,7 @@ server.use express.staticProvider pub
 server.use browserify base : __dirname + '/../client', mount : '/client.js'
 
 server.get '/', (req, res) ->
-  model.Person.find (err, user_list) -> 
+  model.get_members (err, user_list) -> 
     context =
       config : config
       strings : strings
@@ -64,7 +64,7 @@ server.get '/profile', ( req, res ) ->
   res.end()
 
 server.get '/profile/:id', (req, res) ->
-  model.Person.findOne uid:req.params.id, (err, user) ->
+  model.get_person req.params.id, (err, user) ->
     context =
       config : config
       strings : strings
@@ -106,7 +106,7 @@ server.get '/account', (req, res) ->
   if not uid = req?.fbx_cookie?.uid
     res.send 'Not Authorized', 501
     return
-  model.Person.findOne uid:uid, (err, user) ->
+  model.get_person uid, (err, user) ->
     context =
       nav:
         home: yes

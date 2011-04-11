@@ -1,34 +1,45 @@
-mongoose = require 'mongoose'
+sparql = require 'sparql'
 facebook_express = require 'facebook-express'
+
+sparql_record = require './sparql_record'
 config = require './config'
 
-mongoose.connect 'mongodb://localhost/test'
+Field = sparql_record.Field
+Email = sparql_record.Email
 
-Schema = mongoose.Schema
-ObjectId = Schema.ObjectId
+client = new sparql.Client config.sparql_endpoint
+client.prefix_map = 
+  mv : 'http://mapochovalley.com/id/'
+  foaf : 'http://xmlns.com/foaf/0.1/'
 
-Person = new Schema
-  uid :
-    type: Number, unique: true
-  name : String
-  country: String
-  locale: String
-    
-  badge_name: String
-  tagline : String
-  twitter_id : String
-  email : String
-  meetup_id : String
-  
-  is_investor: Boolean
-  is_entrepreneur : Boolean
-  is_developer : Boolean
-  is_sup : Boolean
-  sup_date : Date
+person_fields = 
+  name:
+    new Field p: 'foaf:name', c: [1,1]
+  email:
+    new Field p: 'foaf:mbox', t: Email, c: [1,1]
+  uid: 
+    new Field p: 'mv:facebook_id', t: Number, c: [0,1]
+  country: 
+    new Field path: 'mv:country'
+  locale: 
+    new Field path: 'mv:locale'
+  badge_name: 
+    new Field path: 'mv:badge_name'
+  tagline: 
+    new Field path: 'mv:tagline'
+  twitter_id: 
+    new Field path: 'mv:twitter_id'
+  meetup_id: 
+    new Field path: 'mv:meetup_id'
+  tags: 
+    new Field path: 'mv:tag', c: [0,-1]
 
+get_person = ( uid, cb ) ->
+  sparql_record.load_record client, 'mv:graph', 'mv:fb'+uid, person_fields, cb
 
-mongoose.model 'Person', Person
-Person = mongoose.model 'Person'
+get_members = ( cb ) ->
+  q = 'select distinct ?p where { mv:mv mv:member ?p }'
+  sparql_record.load_records client, 'mv:graph', q, person_fields, cb
 
 fbx = facebook_express.create_helper
   app_id: config.app_id
@@ -53,56 +64,18 @@ fbx = facebook_express.create_helper
       user: { country: 'cl', locale: 'en_US' },
       user_id: '545415493' }
     ###
-    
-    p = new Person
-    p.name = p.badge_name = data.registration.name
-    p.email = data.registration.email
-    p.uid = data.user_id
-    p.country = data.user.country
-    p.locale = data.user.locale
-    
-    p.save -> console.log ['saved new user', p]
-    
-    cb '/profile/' + p.uid
 
-exports.Person = Person
+    uid = data.user_id
+    client.query "insert data into graph mv:graph { mv:mv mv:member mv:fb#{uid} }", (err, res) ->
+      get_person uid, (err, p) ->
+        p.name = p.badge_name = data.registration.name
+        p.email = data.registration.email
+        p.uid = uid
+        p.country = data.user.country
+        p.locale = data.user.locale
+        p.save -> 
+          cb '/profile/' + p.uid
+
 exports.fbx = fbx
-
-###
-
-In Mongo
-------------
-db.people.save( {uid:545415493, name:'Aldo Bucchi'} )
-
-
-In Node/Mongoose
------------
-var m = require('mongoose')
-m.connect('mongodb://localhost/test')
-var Schema = m.Schema
-var ObjectId = Schema.ObjectId
-var Person = new Schema({uid:Number, name:String})
-m.model('Person', Person)
-var p = m.model('Person')
-
-p.find( {uid:545415493}, function(err, res){
-  console.log(res)
-})
-
-
-p.findById( 'non-existent', function(err, res){
-  console.log(res)
-})
-
-p.findById( '4d62af09a007a28d0d000001', function(err, res){
-  console.log('Got Result')
-  console.log(res.name)
-  res.name = 'Waldo Bucchi'
-  console.log(res.name)  
-  res.save(function(){
-    console.log('saved')
-  })
-})
-
-
-###
+exports.get_person = get_person
+exports.get_members = get_members

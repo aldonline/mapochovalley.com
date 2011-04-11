@@ -13,33 +13,23 @@ cbx = (_label, _id, _checked=false) ->
 
 coffeescript -> require('./account').init()
 
-div class:'container container-left', ->
-  a href:"/profile/#{@user.uid}", -> img src: "http://graph.facebook.com/#{@user.uid}/picture?type=large"
-
-  form id:'edit-account-form', ->
-    cbx 'Investor', 'is_investor'
-    cbx 'Entrepreneur', 'is_entrepreneur'
-    cbx 'Developer', 'is_developer'
-    cbx 'Start-Up Chile Entrepreneur', 'is_sup'
-    
-    label 'Name on Badge', 'for':'tagline'
-    input id:'badge_name', type:'text' , class:'required'
-    br()
-    label 'Tagline', 'for':'tagline'
-    input id:'tagline', type:'text' , class:'required'
-    ###
-    editing email should not be allowed until we get email verification
-    in place. for now we are using Facebook's verification on signup
-    br()
-    label 'Email', 'for':'email'
-    input id:'email', type:'text' , class:'required email'
-    ###
-    br()
-    label 'Twitter ID', 'for':'twitter_id'
-    input id:'twitter_id', type:'text'
-    
-  button id:'save-account-button', -> 'Save Changes'
-        
-div class:'container container-right', ->
-  div class:'badge', ->
-    img id:'badge-img', src: '/badge/' + @user.uid + '.png', width: 300
+table id:'account-table', ->
+  tr ->
+    td class:'td1', ->
+      form id:'edit-account-form', ->
+        p -> 
+          label 'Name on Badge', 'for':'tagline'
+          input id:'badge_name', type:'text' , class:'required'
+        p -> 
+          label 'Tagline', 'for':'tagline'
+          input id:'tagline', type:'text' , class:'required'
+        p ->
+          label 'Twitter ID', 'for':'twitter_id'
+          input id:'twitter_id', type:'text'
+    td class:'td2', ->
+      div class:'badge', ->
+        img id:'badge-img', src: '/badge/' + @user.uid + '.png', width: 300
+      center ->
+        button id:'save-account-button', -> 'Apply Changes'
+    td class:'td3', ->
+      div id:'icon-selector-container', ->
