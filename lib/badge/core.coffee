@@ -3,11 +3,14 @@ express = require 'express'
 
 generator = require './generator'
 model = require '../model'
+icon_map = require './icon_map'
 
 ###
 serves badge images for each person
 they will be accessible at the following URI
 ###
+
+get_icon_url = (id) -> return icon.url for icon in icon_map when icon.id is id
 
 exports.init = ( server ) ->
   server.get '/badge/:id.png', (req, res) ->
@@ -15,7 +18,10 @@ exports.init = ( server ) ->
     model.get_person id, (err, person) ->
       if person?
         url = 'http://mapochovalley.com/profile/'+person.uid
-        canvas = generator.generate_badge_canvas url, person.badge_name or person.name, person.twitter_id, person.tagline, ''
+        name = person.badge_name or person.name
+        twt = person.twitter_id
+        icons = (get_icon_url id for id in person.tags)
+        canvas = generator.generate_badge_canvas url, name, twt, person.tagline, '', icons
         generator.respond_canvas_as_png canvas, res
       else # TODO: handle 500
         res.statusCode = 404

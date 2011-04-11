@@ -26,7 +26,7 @@ class IconSelector
     cbx.attr('checked', no) for k, cbx of @cbxs
     # then set some
     if values?
-      @cbxs[k].attr('checked', yes ) for v in values
+      @cbxs[v].attr('checked', yes ) for v in values
   
   get_values : ->
     k for own k, cbx of @cbxs when cbx.attr 'checked'
