@@ -1,3 +1,4 @@
 localconfig.coffee
 .DS_Store
 lib/webapp/public/css/styles.css
+test/db/work/*
