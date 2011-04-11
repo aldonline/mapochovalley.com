@@ -85,12 +85,11 @@ class Field
 generate_primary_load_query = ( graph, uri, fields ) ->
   projections = []
   bgps = []
-  for own name, field of fields
-    unless field.is_multi_valued()
-      projections.push name
-      bgp = "#{uri} #{field.path} ?#{name}"
-      bgp = if field.is_optional() then "optional { #{bgp} }" else "#{bgp} ."
-      bgps.push bgp
+  for own name, field of fields when not field.is_multi_valued()
+    projections.push name
+    bgp = "#{uri} #{field.path} ?#{name}"
+    bgp = if field.is_optional() then "optional { #{bgp} }" else "#{bgp} ."
+    bgps.push bgp
   bgps = bgps.join "\n"
   projections = ( "?#{p}" for p in projections ).join "\n"
   from = if graph? then " from #{graph} " else ""
