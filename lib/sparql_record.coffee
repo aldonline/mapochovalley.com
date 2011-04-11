@@ -59,23 +59,42 @@ class Field
     # unbox
     if @is_multi_valued() then arr else array_unbox arr
   
+  # encodes to NT or NULL
+  encode : (value) ->
+    return null unless value?
+    if @type is Email
+      "<mailto:#{value}>"
+    else
+      JSON.stringify value
+  
+  encode_and_box : (value) ->
+    value = array_box value
+    @encode v for v in value
+  
+  execute_update : ( client, graph, uri, value, cb ) ->
+    value = @encode_and_box value
+    client.set graph, uri, @path, value, no, (err, res) ->
+      if err?
+        cb err
+      else
+        cb null, yes
+  
   is_multi_valued : -> @cardinality[1] is -1
   is_optional : -> @cardinality[0] is 0
 
 generate_primary_load_query = ( graph, uri, fields ) ->
   projections = []
-  lines = []
+  bgps = []
   for own name, field of fields
     unless field.is_multi_valued()
       projections.push name
-      line = "#{uri} #{field.path} ?#{name}"
-      line = if field.is_optional() then "optional { #{line} }" else "#{line} ."
-      lines.push line
-  lines = lines.join "\n"
+      bgp = "#{uri} #{field.path} ?#{name}"
+      bgp = if field.is_optional() then "optional { #{bgp} }" else "#{bgp} ."
+      bgps.push bgp
+  bgps = bgps.join "\n"
   projections = ( "?#{p}" for p in projections ).join "\n"
   from = if graph? then " from #{graph} " else ""
-  query = "select distinct \n #{projections}\n #{from} where { \n #{lines} \n } limit 1"
-  query
+  "select distinct \n #{projections}\n #{from} where { \n #{bgps} \n } limit 1"
 
 generate_secondary_load_queries = ( graph, uri, fields ) ->
   from = if graph? then " from #{graph} " else ""
@@ -94,6 +113,18 @@ load_record = (client, graph, uri, fields, cb) ->
         rdf_value_arr = (v for v in rdf_value_arr when v?) # filter nulls
         record[field_name] = field.decode_and_unbox rdf_value_arr
       cb null, record if --pending is 0
+
+save_record = (client, graph, uri, fields, record, cb) ->
+  # count how many queries we will fire
+  pending = 0
+  pending++ for own k of fields
+  # fire them
+  for own field_name, field of fields
+    field.execute_update client, graph, uri, record[field_name], (err, res) ->
+      if err?
+        console.log 'ERROR updating field' + field_name
+        console.log err
+      cb? null, yes if --pending is 0
 
 person_fields = 
   name:
@@ -117,13 +148,15 @@ person_fields =
   tags: 
     new Field path: 'mv:tag', c: [0,-1]
 
-
 client = new sparql.Client 'http://localhost:8898/sparql'
 client.prefix_map = 
   mv : 'http://mapochovalley.com/id/'
 
-load_record client, null, 'mv:fb545415493', person_fields, (err, res) ->
-  console.log res
-
+load_record client, null, 'mv:fb545415493', person_fields, (err, record) -> 
+  console.log record
+  record.name = 'Aldo Bucchi Z'
+  record.tags.push 'superhero'
+  save_record client, 'mv:graph', 'mv:fb545415493', person_fields, record, (err, res) ->
+    console.log 'saved record'
 
 
