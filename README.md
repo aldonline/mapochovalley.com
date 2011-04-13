@@ -19,7 +19,7 @@ Setting up the MV Web App for local development
 
   * [Node](http://nodejs.org/) >= v0.4.1 (**So far, tested and working with v0.4.1. We had problems related to modules express and connect using v0.4.2**)
   * The latest [NPM](https://github.com/isaacs/npm)
-  * [Mongo DB](http://www.mongodb.org/) >= 1.6.5
+  * Cairo Graphics Library `sudo apt-get install libcairo2-dev`
 
 ### Get Source
 
@@ -123,12 +123,6 @@ and take a look at the root property, in my laptop (mac OSX) is at "/usr/local/l
     $ ln -s /usr/local/lib/node $HOME/.node_modules
 
 [Aldo] We should provide some test data. But that's not trivial as since everyone is using a different Facebook App, it won't work for everyone. The other option is to share a Facebook App amongst ourselves. But in the open? Hmm...
-
-
-
-
-
-
 
 
 

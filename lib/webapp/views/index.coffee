@@ -25,12 +25,7 @@ div class:'container container-right-index faq', ->
   
   h2 id:'mapocho-header', -> 'About Mapocho Valley'  
   
-  p -> 'Mapocho Valley is the Chilean Entrepreneurial Community'
-  
-  h3 id:'faq-why-so-simple', -> 'Why is this website so simple?'
-  p -> """
-  We don't want to repeat what you can already find on Facebook or Meetup.com.
-  """
+  p -> '...'
 
   h2 id:'badge-header', -> 'Your Mapocho Badge'
 
@@ -58,6 +53,8 @@ div class:'container container-right-index faq', ->
     """
   
   h2 id:'points-header', -> 'Mapocho Points'
+  
+  p -> '(Eduardo: this is where you show off by designing a ground breaking reputation network/game) ;)'
   
   h3 id:'faq-points', -> 'How do I earn Mapocho Points?'
   p -> """
@@ -93,8 +90,10 @@ div class:'container container-right-index faq', ->
       td -> 'Sell your startup for 10 million dolars'
       td -> '100'
   
-  p 'You will also get a variable amount of "gift" points each month that you must give to different members'
-  
+  ul ->
+    li -> 'You will also get a variable amount of "gift" points each month that you must give to different members'
+    li -> 'These points are assigned according to your current points'
+    li -> 'Points will decay in time. Just like the ATP tour'
   
   h3 id:'faq-points-why', -> 'Why Should I care?'
   p -> """

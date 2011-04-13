@@ -65,4 +65,4 @@ html ->
                 width:360
                 height:140
                 border:0
-          @body
+          text @body

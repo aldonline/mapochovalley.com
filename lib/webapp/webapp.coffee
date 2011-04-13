@@ -23,6 +23,7 @@ server = express.createServer()
 
 server.register '.coffee', coffeekup
 server.set 'view engine', 'coffee'
+server.set 'views', __dirname + '/views'
 
 fbx.init server
 badge.init server
@@ -30,13 +31,7 @@ rpc._init server
 
 pub = __dirname + '/public'
 server.use express.compiler src: pub, enable: ['less']
-server.use express.staticProvider pub
-# the following middleware is the defacto standard
-# but we are not using it (yet), so I comment out
-# server.use express.bodyDecoder()
-# server.use express.cookieDecoder()
-# TODO: Make the secret configurable.
-# server.use express.session secret: 'hackme'
+server.use express.static pub
 
 # make scripts located in lib/client available to the client
 server.use browserify base : __dirname + '/../client', mount : '/client.js'

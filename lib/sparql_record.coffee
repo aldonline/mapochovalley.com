@@ -119,6 +119,10 @@ load_record = (client, graph, uri, fields, cb) ->
 load_records = (client, graph, query, fields, cb) ->
   records = []
   client.col query, (err, res) ->
+    if res.length is 0 # return right away if no results
+      cb null, []
+      return
+    # lets fire one query per result ( parallel )
     pending = res.length
     i = 0
     for uri_s in res
@@ -128,10 +132,10 @@ load_records = (client, graph, query, fields, cb) ->
         cb null, records if --pending is 0
 
 save_record = (client, graph, uri, fields, record, cb) ->
-  # count how many queries we will fire
+  # how many queries will we fire?
   pending = 0
   pending++ for own k of fields
-  # fire them
+  # fire in parallel
   for own field_name, field of fields
     field.execute_update client, graph, uri, record[field_name], (err, res) ->
       if err?

@@ -108,6 +108,8 @@ draw_icon_column = (ctx, icons, col_x, col_y, col_w, col_h ) ->
   x += col_x
   for icon in icons
     icon_img = get_icon_image icon
+    # warning. if icon does not exist or is not an image
+    # this will fail silently
     ctx.drawImage icon_img, x, y
     y += 128 + icon_gap
 

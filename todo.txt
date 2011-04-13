@@ -5,3 +5,5 @@ when user is looking at his own badge, there should be a visible link to "edit a
 on logout, redirect to /
 
 ask for more facebook fields
+
+
