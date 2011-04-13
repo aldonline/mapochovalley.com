@@ -35,6 +35,7 @@ save_canvas_as_png = ( canvas, path, cb ) ->
 
 # pumps a canvas through an HTTP response as image/png
 respond_canvas_as_png = ( canvas, res ) ->
+  res.headers ?= {}
   res.headers['Content-Type'] = 'image/png'
   # TODO: content length?
   util.pump canvas.createPNGStream(), res
