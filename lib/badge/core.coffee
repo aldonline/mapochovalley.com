@@ -10,6 +10,13 @@ serves badge images for each person
 they will be accessible at the following URI
 ###
 
+
+# The size of the QR code depends on the length of the URL
+# thus, we are now using a fixed URL.
+# we should be able to resize the QR code dynamically
+# qrcode_url = config.url
+qrcode_url = 'http://mapochovalley.com'
+
 # returns the URL for an icon by reading the icon_map
 # If the icon does not exist, it returns undefined
 get_icon_url = (id) -> return icon.url for icon in icon_map when icon.id is id
@@ -19,7 +26,7 @@ exports.init = ( server ) ->
     id = req.params.id
     model.get_person id, (err, person) ->
       if person?
-        url = config.url + '/profile/' + person.uid
+        url = qrcode_url + '/profile/' + person.uid
         name = person.badge_name or person.name
         twt = person.twitter_id
         icons = (get_icon_url id for id in person.tags)
@@ -37,7 +44,7 @@ exports.init = ( server ) ->
   
   # used during development
   server.get '/badgetest.png', (req, res) ->
-    url = config.url + '/profile/test'
+    url = qrcode_url + '/profile/test'
     icons = ['startupchile.png', 'symbolize/coffee.png', 'symbolize/email.png']
     canvas = generator.generate_badge_canvas url, 'Aldo Bucchi C', '@aldonline', 'I am super cool', 'ES EN', icons
     generator.respond_canvas_as_png canvas, res
