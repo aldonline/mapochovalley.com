@@ -1,4 +1,5 @@
 icon_selector = require './icon_selector'
+fyi = (msg) -> console?.log? msg
 
 ics = null
 
@@ -25,9 +26,9 @@ exports.init = ->
 
 fetch_data = ->
   set_busy yes
-  console.log 'fetching data...'
+  fyi 'fetching data...'
   ___minirpc.get_badge_data (err, res) ->
-    console.log ['got data', res]
+    fyi ['got data', res]
     if err?
       throw new Error 'rpc.get_badge_data error:' + err
     inject res
@@ -35,10 +36,10 @@ fetch_data = ->
 
 save_data = ->
   data = extract()
-  console.log [ 'saving data...', data ]
+  fyi [ 'saving data...', data ]
   set_busy yes
   ___minirpc.set_badge_data data, (err, res) ->
-    console.log ['saved data', err, res]
+    fyi ['saved data', err, res]
     fetch_data()
     reload_badge_image()
 
