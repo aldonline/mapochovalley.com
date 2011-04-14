@@ -1,0 +1,9 @@
+exports.get_config = ->
+  # facebook
+  app_id: 'xxx'
+  app_secret: 'xxx'
+  url: 'http://localhost.local'
+  # server
+  port: 80
+  # database
+  sparql_endpoint: 'http://localhost:8890/sparql'
