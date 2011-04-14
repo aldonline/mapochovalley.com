@@ -40,6 +40,28 @@ respond_canvas_as_png = ( canvas, res ) ->
   # TODO: content length?
   util.pump canvas.createPNGStream(), res
 
+# auto_size_font ctx, 'Verdana', 'Aldo Bucchi', 50px, 200px, 1300px
+# returns possibly modified text and sets the values in the context
+auto_size_font = ( ctx, font_face, text, min_size, max_size, max_width ) ->
+  increment = 2
+  measure = (size, t) ->
+    ctx.font = "#{size}px #{font_face}"
+    ctx.measureText(t or text).width
+  # Case 1. Too many characters. Even at min_size we overflow
+  # we need to start cutting ( ellipsis )
+  current_size = min_size
+  if measure(current_size) > max_width # start cutting text and add ellipsis
+    tex = text
+    while true
+      tex = tex.substring 0, tex.length-1
+      if measure( current_size, tex + '...') <= max_width
+        return tex + '...'
+  # Case 2. Cool. min_size works. let's see how far we can grow
+  while true
+    next_size = current_size + increment
+    if next_size > max_size or measure(next_size) > max_width
+      return text
+    current_size = next_size
 
 # Icons is an array of AT MOST 8 icons. They will be layed out in a symmetric manner
 generate_badge_canvas = ( uri, name, twitter, tagline, footer, icons ) ->
@@ -51,7 +73,7 @@ generate_badge_canvas = ( uri, name, twitter, tagline, footer, icons ) ->
   ctx.fillRect 0, 0, width, height
   ## add name
   ctx.fillStyle = 'black'
-  ctx.font = '120px Verdana'
+  name = auto_size_font ctx, 'Verdana', name, 80, 120, width - 100
   te = ctx.measureText name
   ctx.fillText name, (width - te.width) / 2, 150
   ## add twitter
@@ -63,7 +85,7 @@ generate_badge_canvas = ( uri, name, twitter, tagline, footer, icons ) ->
   ## add tagline
   if tagline?
     ctx.fillStyle = '#444'
-    ctx.font = '50px Verdana'
+    tagline = auto_size_font ctx, 'Verdana', tagline, 45, 60, width - 100
     te = ctx.measureText tagline
     ctx.fillText tagline, (width - te.width) / 2, 420
   ## add QR code
