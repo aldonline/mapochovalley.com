@@ -3,3 +3,5 @@ localconfig.coffee
 lib/webapp/public/css/styles.css
 test/db/work/*
 node_modules
+localnotes.md
+localnotes.txt
