@@ -28,7 +28,7 @@ table id:'account-table', ->
           input id:'twitter_id', type:'text'
     td class:'td2', ->
       div class:'badge', ->
-        img id:'badge-img', src: '/badge/' + @user.uid + '.png', width: 300
+        img id:'badge-img', src: '/badge/' + @user.uid + '.png'
       center ->
         button id:'save-account-button', -> 'Apply Changes'
     td class:'td3', ->

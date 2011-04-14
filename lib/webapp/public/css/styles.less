@@ -2,6 +2,13 @@
 @lucida: 'Lucida Grande','Lucida Sans Unicode',Verdana,sans-serif;
 @marker: 'Permanent Marker', arial, serif;
 
+@large_badge_width: 1300px;
+@large_badge_height: 1655px;
+
+@badge_width: 300px;
+@badge_height: @badge_width / @large_badge_width * @large_badge_height;
+
+
 body {
     background-color: #FFFFFF;
     color: #222222;
@@ -153,7 +160,9 @@ div.users {
 
 
 div.badge {
-  img {
+  img#badge-img {
+    width: @badge_width;
+    height: @badge_height;
     border: 1px solid #222;	
   } 
 }
